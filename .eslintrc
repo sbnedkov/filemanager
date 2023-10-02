@@ -1,9 +1,13 @@
 {
+    "rules": {
+        "react/prop-types": "off"
+    },
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "env": {
+        "amd": true,
         "es6": true
     },
     "extends": [
