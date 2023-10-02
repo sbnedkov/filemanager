@@ -1,64 +1,16 @@
 {
-    "rules": {
-        "array-bracket-spacing": ["warn"],
-        "array-callback-return": ["off"],
-        "consistent-return": [0],
-        "default-case": ["warn"],
-        "dot-location": ["warn"],
-        "dot-notation": ["warn"],
-        "func-names": [0],
-        "func-call-spacing": ["warn"],
-        "function-paren-newline": ["off"],
-        "global-require": [0],
-        "indent": ["off", 4],
-        "key-spacing": ["warn"],
-        "implicit-arrow-linebreak": ["off"],
-        "linebreak-style": [2, "unix"],
-        "max-len": ["warn", 220, {"ignoreComments": true}],
-        "newline-per-chained-call": ["warn"],
-        "no-bitwise": ["off"],
-        "no-console": [0],
-        "no-else-return": ["warn"],
-        "no-lonely-if": ["warn"],
-        "no-mixed-operators": ["off"],
-        "no-multi-assign": ["off"],
-        "no-multi-spaces": ["warn"],
-        "no-nested-ternary": ["off"],
-        "no-param-reassign": ["off", {"props": true, "ignorePropertyModificationsFor": ["$scope", "$rootScope"]}],
-        "no-path-concat": ["warn"],
-        "no-plusplus": ["warn"],
-        "no-restricted-syntax": [0],
-        "no-spaced-func": ["warn"],
-        "no-shadow": [0],
-        "no-underscore-dangle": [0],
-        "no-unused-expressions": ["off"],
-        "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}],
-        "no-use-before-define": ["error", {"functions": false}],
-        "no-useless-escape": ["warn"],
-        "no-void": ["off"],
-        "object-curly-spacing": ["off"],
-        "one-var": ["off"],
-        "one-var-declaration-per-line": ["off"],
-        "operator-assignment": ["warn"],
-        "padded-blocks": ["warn"],
-        "quotes": [2, "single"],
-        "quote-props": ["warn", "consistent-as-needed", {"numbers": false}],
-        "radix": ["off"],
-        "semi": [2, "always"],
-        "space-before-function-paren": ["warn", "always"],
-        "spaced-comment": ["warn"],
-        "space-infix-ops": ["warn"],
-        "vars-on-top": ["off"],
-        "yoda": ["warn"]
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "env": {
-        "es6": true,
-        "node": true,
-        "browser": true,
-        "phantomjs": true,
-        "mocha": true,
-        "react": true
+        "es6": true
     },
-    "parserOptions": {},
-    "globals": {}
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "document": true
+    }
 }

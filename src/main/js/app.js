@@ -1,35 +1,8 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const client = require('./client');
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
-class Dir extends React.Component{
-	render() {
-		return (
-			<tr>
-				<td>{ this.props.dir.name }</td>
-			</tr>
-		)
-	}
-}
-
-class DirList extends React.Component {
-    render() {
-        const dirs = this.props.dirs.map(dir =>
-            <Dir key={ dir._links.self.href } dir={ dir }/>
-        );
-
-        return (
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Dir name</th>
-                    </tr>
-                    { dirs }
-                </tbody>
-            </table>
-        );
-    }
-}
+import client from './client';
+import DirList from './dirlist';
 
 class App extends React.Component {
     constructor (props) {
@@ -50,7 +23,6 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('react')
-)
+const container = document.getElementById('react');
+const root = createRoot(container);
+root.render(<App/>);
