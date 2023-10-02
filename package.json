@@ -9,12 +9,13 @@
   "author": "Svetoslav Nedkov",
   "license": "ISC",
   "dependencies": {
+    "react-file-manager-ui": "1.1.0",
     "rest": "1.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.1.0",
-    "@babel/preset-env": "7.1.0",
-    "@babel/preset-react": "7.0.0",
+    "@babel/core": "7.23.0",
+    "@babel/preset-env": "7.22.20",
+    "@babel/preset-react": "7.22.15",
     "babel-loader": "8.0.2",
     "eslint": "8.50.0",
     "eslint-plugin-react": "7.33.2",
