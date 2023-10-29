@@ -15,7 +15,8 @@ export default function DirList () {
         openFile={openFile}
         uploadFiles={uploadFiles}
         rename={rename}
-        downloadFile={downloadFile}
+        getDownloadLink={getDownloadLink}
+        getUploadLink={getUploadLink}
         getFileSizeBytes={getFileSizeBytes}
         getFileChangedDate={getFileChangedDate}
         features={[
@@ -24,7 +25,7 @@ export default function DirList () {
             'deletePaths',
             'rename',
             'openFile',
-            'downloadFile',
+            'getDownloadLink',
             'getFileSizeBytes',
             'getFileChangedDate'
         ]}
@@ -47,8 +48,12 @@ function deletePaths () {
     console.log('deletePaths', arguments);
 }
 
-function uploadFiles () {
+async function uploadFiles () {
     console.log('uploadFiles', arguments);
+}
+
+function getUploadLink (filepath, filename) {
+    return `/api/fileupload/${filename}`;
 }
 
 function rename () {
@@ -57,18 +62,17 @@ function rename () {
 
 function openFile () {
     console.log('openFile', arguments);
-    alert('OPEN');
 }
 
-function downloadFile (path) {
+function getDownloadLink (path) {
     return `/api/filedownload${path}`;
 }
 
-function getFileSizeBytes () {
+function getFileSizeBytes (path) {
     return Math.random() * Math.pow(10, 7)
 }
 
-function getFileChangedDate () {
+function getFileChangedDate (path) {
     const time = Math.round(Math.random() * 1e12);
     return new Date(time);
 }
