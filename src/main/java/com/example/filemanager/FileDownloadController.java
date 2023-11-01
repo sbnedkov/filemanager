@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.tika.config.TikaConfig;
@@ -28,24 +27,16 @@ import org.xml.sax.SAXException;
 
 @RestController
 public class FileDownloadController {
-    static String PATH = "/api/filedownload";
+    private static String PATH = "/api/filedownload";
 
-    @GetMapping(value = {"/api/filedownload/**"}, produces="application/octet-stream")
+    @GetMapping(value = {"/api/filedownload/**"})
     public String download (HttpServletRequest request, HttpServletResponse response) {
+        S3Backend s3 = new S3Backend();
         String fullPath = request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
         String filepath = fullPath.substring(FileDownloadController.PATH.length());
 
-        int idx = filepath.lastIndexOf('/');
-        String filename = filepath.substring(idx + 1);
-
-        try {
-            response.setHeader("Content-Type", getMimeType(filepath));
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
         response.setHeader("Content-Disposition", "inline");
-        return filepath;
+        return s3.getDownloadFileLink(new FileDescriptor(filepath));
     }
 
     public String getMimeType (String filename) throws FileNotFoundException, IOException, SAXException, TikaException {

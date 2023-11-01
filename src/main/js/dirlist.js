@@ -64,8 +64,14 @@ function openFile () {
     console.log('openFile', arguments);
 }
 
-function getDownloadLink (path) {
-    return `/api/filedownload${path}`;
+async function getDownloadLink ([path]) {
+    return fetch(`/api/filedownload${path}`).then(response => {
+        if (!response.ok) {
+            throw new Error(response);
+        }
+
+        return response.text();
+    });
 }
 
 function getFileSizeBytes (path) {
