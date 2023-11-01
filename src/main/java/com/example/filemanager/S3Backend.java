@@ -33,6 +33,7 @@ public class S3Backend implements StorageBackend {
             GetObjectRequest.builder()
                 .bucket(S3Backend.BUCKET)
                 .key(fd.getFilepath())
+                .responseContentDisposition("attachment; filename=" + fd.getFilename())
                 .build();
         GetObjectPresignRequest getObjectPresignRequest =
             GetObjectPresignRequest.builder()
