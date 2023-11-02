@@ -13,6 +13,13 @@ public class FileDescriptor {
         this.mimeType = "application/octet-stream";
     }
 
+    public FileDescriptor (String filepath, String mimeType) {
+        int idx = filepath.lastIndexOf('/');
+        this.filepath = filepath.substring(0, idx);
+        this.filename = filepath.substring(idx + 1);
+        this.mimeType = mimeType;
+    }
+
     public FileDescriptor (String owner, String path, String name, String mime) {
         this.owner = owner;
         this.filepath = path;

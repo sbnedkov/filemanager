@@ -1,8 +1,9 @@
 package com.example.filemanager;
 
 import java.io.InputStream;
+import java.util.concurrent.CompletableFuture;
 
 public interface StorageBackend {
     public String getDownloadFileLink(FileDescriptor fd);
-    public void uploadFile(FileDescriptor fd, InputStream is);
+    public CompletableFuture<?> uploadFile(FileDescriptor fd, InputStream is, long length);
 }

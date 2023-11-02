@@ -5,7 +5,7 @@ import FileManager from 'react-file-manager-ui';
 import client from './client';
 
 const FILE = 1;
-const FOLDER = 2;
+// const FOLDER = 2;
 
 export default function DirList () {
     return (<FileManager
@@ -33,11 +33,11 @@ export default function DirList () {
 }
 
 async function getList () {
-    return new Promise((resolve, _reject) => client({ method: 'GET', path: '/api/dirs' }).done(response =>
-        resolve(response.entity._embedded.dirs.map(dir => ({
-            name: dir.name,
-            type: Math.random() > 0.5 ? FOLDER : FILE
-        })))));
+    const response = await client({ method: 'GET', path: '/api/files' });
+    return response.entity._embedded.files.map(file => ({
+        name: file.name,
+        type: file.type
+    }));
 }
 
 function createDirectory () {
@@ -48,12 +48,24 @@ function deletePaths () {
     console.log('deletePaths', arguments);
 }
 
-async function uploadFiles () {
-    console.log('uploadFiles', arguments);
+async function uploadFiles (path, files) {
+    for await (const file of files) {
+        await client({
+            method: 'POST',
+            path: '/api/files',
+            entity: {
+                name: file.name,
+                type: FILE
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }
 
-function getUploadLink (filepath, filename) {
-    return `/api/fileupload/${filename}`;
+function getUploadLink (currentPath, filename) {
+    return `/api/fileupload${currentPath}/${filename}`;
 }
 
 function rename () {
@@ -65,20 +77,15 @@ function openFile () {
 }
 
 async function getDownloadLink ([path]) {
-    return fetch(`/api/filedownload${path}`).then(response => {
-        if (!response.ok) {
-            throw new Error(response);
-        }
-
-        return response.text();
-    });
+    const response = await fetch(`/api/filedownload${path}`);
+    return response.text();
 }
 
-function getFileSizeBytes (path) {
+function getFileSizeBytes (/* path */) {
     return Math.random() * Math.pow(10, 7)
 }
 
-function getFileChangedDate (path) {
+function getFileChangedDate (/* path */) {
     const time = Math.round(Math.random() * 1e12);
     return new Date(time);
 }

@@ -5,14 +5,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Dir {
+public class File {
+    private static int FILE = 1;
+    private static int DIR = 2;
+
     private @Id @GeneratedValue Long id;
     private String name;
+    private int type;
 
-    private Dir () {
+    private File () {
     }
 
-    public Dir (String name) {
+    public File (String name) {
         this.name = name;
     }
 
@@ -32,8 +36,16 @@ public class Dir {
         this.name = name;
     }
 
+    public int getType () {
+        return type;
+    }
+
+    public void setType (int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString () {
-        return "Directory { id: " + this.id + ", name: " + this.name + " }";
+        return "File { id: " + this.id + ", name: " + this.name + ", type: " + this.type + " }";
     }
 }
