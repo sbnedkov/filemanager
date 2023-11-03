@@ -16,8 +16,9 @@ public class File {
     private File () {
     }
 
-    public File (String name) {
+    public File (String name, int type) {
         this.name = name;
+        this.type = type;
     }
 
     public Long getId () {
