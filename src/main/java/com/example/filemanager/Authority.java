@@ -8,17 +8,17 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "authorities")
-public class AuthorityEntity {
+public class Authority {
     private @Id @GeneratedValue Long id;
     @Column(nullable = false, unique = true, length = 255)
     private String username;
     @Column(nullable = false, length = 31)
     private String authority;
 
-    private AuthorityEntity () {
+    private Authority () {
     }
 
-    public AuthorityEntity (String username, String authority) {
+    public Authority (String username, String authority) {
         this.username = username;
         this.authority = authority;
     }
@@ -49,6 +49,6 @@ public class AuthorityEntity {
 
     @Override
     public String toString () {
-        return "User { id: " + this.id + ", username: " + this.username + ", authority: " + this.authority + "}";
+        return "Authority { id: " + this.id + ", username: " + this.username + ", authority: " + this.authority + "}";
     }
 }

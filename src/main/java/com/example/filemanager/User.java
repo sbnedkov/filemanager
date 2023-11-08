@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class User {
     private @Id @GeneratedValue Long id;
     // @Column(length = 255)
     // private String firstName;
@@ -21,14 +21,14 @@ public class UserEntity {
     @Column(nullable = false)
     private Boolean enabled;
 
-    private UserEntity () {
+    private User () {
     }
 
-    public UserEntity (String username) {
+    public User (String username) {
         this.username = username;
     }
 
-    public UserEntity (/* String firstName, String lastName, */String username, String password, boolean enabled) {
+    public User (/* String firstName, String lastName, */String username, String password, boolean enabled) {
         // this.firstName = firstName;
         // this.lastName = lastName;
         this.username = username;

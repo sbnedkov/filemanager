@@ -3,6 +3,7 @@ import React from 'react';
 import FileManager from 'react-file-manager-ui';
 
 import client from './client';
+import getCsrfToken from './utils';
 
 const FILE = 1;
 // const FOLDER = 2;
@@ -65,7 +66,7 @@ async function uploadFiles (path, files) {
 }
 
 function getUploadLink (currentPath, filename) {
-    return `/api/fileupload${currentPath}/${filename}`;
+    return `/api/fileupload${currentPath}/${filename}?_csrf=${getCsrfToken()}`;
 }
 
 function rename () {

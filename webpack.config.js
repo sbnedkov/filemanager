@@ -2,12 +2,12 @@ var path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/main/js/app.js',
+    entry: { bundle: './src/main/js/app.js', login: './src/main/js/login.js' },
     devtool: 'source-map',
     cache: true,
     output: {
         path: __dirname,
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     module: {
         rules: [{

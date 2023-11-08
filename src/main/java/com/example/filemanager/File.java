@@ -1,16 +1,21 @@
 package com.example.filemanager;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "files")
 public class File {
     private static int FILE = 1;
     private static int DIR = 2;
 
     private @Id @GeneratedValue Long id;
+    @Column(nullable = false, unique = true, length = 4096)
     private String name;
+    @Column(nullable = false)
     private int type;
 
     private File () {
